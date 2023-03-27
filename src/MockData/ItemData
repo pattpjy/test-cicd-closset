@@ -1,0 +1,14 @@
+{
+    "data": {
+        "id": 1,
+        "type": "item",
+        "attributes": {
+            "season": "all season",
+            "clothing_type": "other",
+            "size": "Large",
+            "color": "red",
+            "image_url": "http://localhost:5000/rails/active_storage/blobs/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBDZz09IiwiZXhwIjpudWxsLCJwdXIiOiJibG9iX2lkIn19--7a80867ed962af9718e097d1d7233e3499806a3d/IMG_7868.jpg",
+            "notes": "Hand wash only"
+        }
+    }
+}
