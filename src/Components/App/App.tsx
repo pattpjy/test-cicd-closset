@@ -1,34 +1,26 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
 import './App.css'
+import { Route, Routes } from "react-router"
+import { Home } from "../Home/Home"
+import { PageNotFound } from "../PageNotFound/PageNotFound"
+import { Closet } from "../Closet/Closet"
+import { Details } from "../Details/Details"
+import { MyLists } from "../MyLists/MyLists"
+import { List } from "../List/List"
 
 function App() {
-  const [count, setCount] = useState(0)
+ 
 
   return (
-    <div className="App">
-      <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://reactjs.org" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.tsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </div>
+    <main>
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/*" element={<PageNotFound />} />
+        <Route path="/api/v1/users/:id/items" element={<Closet />} />
+        <Route path="/api/v1/users/:id/items/:id" element={<Details />} />
+        <Route path="/api/v1/users/:id/lists" element={<MyLists />} />
+        <Route path="/api/v1/users/:id/lists/:id" element={<List />} />
+      </Routes>
+    </main>
   )
 }
 
