@@ -1,4 +1,4 @@
-{
+export const closetData = {
     "data": [
         {
             "id": 1,
