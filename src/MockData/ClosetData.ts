@@ -20,7 +20,19 @@ export const closetData = {
                 "clothing_type": "bottoms",
                 "size": "32",
                 "color": "black",
-                "image_url": "https://amazonpicture2.com",
+                "image_url": "https://amazonpicture.com",
+                "notes": "Dirty"
+            }
+        },
+        {
+            "id": 3,
+            "type": "item",
+            "attributes": {
+                "season": "winter",
+                "clothing_type": "bottoms",
+                "size": "32",
+                "color": "black",
+                "image_url": "https://amazonpicture.com",
                 "notes": "Dirty"
             }
         }
