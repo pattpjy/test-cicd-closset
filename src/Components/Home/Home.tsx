@@ -16,6 +16,17 @@ interface MenuItem {
     { iconSrc: images, text: 'Create New List', onClick: () => console.log('Clicked Menu Item 4') },
   ];
   return (
-
+    <div className="container">
+      <div className="logo-container">
+        <img className="logo" src={logoSrc} alt="Logo" />
+      </div>
+      {menuItems.map(({ iconSrc, text, onClick }, index) => (
+        <div className="menu-item" key={index} onClick={onClick}>
+          <img className="icon" src={iconSrc} alt="Menu Icon" />
+          <div className="menu-text">{text}</div>
+        </div>
+      ))}
+    </div>
   );
-  };
+ };
+ 
