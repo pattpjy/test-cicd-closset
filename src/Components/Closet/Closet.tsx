@@ -34,8 +34,11 @@ export const Closet = ({ items }: ClosetProps): JSX.Element => {
   })
 
   return (
-    <div className="cards-container">
-      {mappedItems}
+    <div>
+      <h2>My Closet</h2>
+      <div className="cards-container">
+        {mappedItems}
+      </div>
     </div>
   )
 }
