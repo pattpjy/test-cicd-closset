@@ -13,7 +13,9 @@ export const Card = ({ id, image }: CardProps): JSX.Element => {
       <Link to={`/api/v1/users/:id/items/${id}`}>
         <img src={image} alt="Image of clothing item" className="card-image" />
       </Link>
+      <div className="banner-container">
         <p className="delete-banner">Delete Item?</p>
+      </div>
     </div>
   )
 }
