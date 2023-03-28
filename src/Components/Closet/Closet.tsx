@@ -1,6 +1,7 @@
-import { Card } from "../Card/Card";
-import { closetData } from "../../MockData/ClosetData.js";
-import "./Closet.css";
+import { Card } from '../Card/Card';
+import { closetData } from '../../MockData/ClosetData.js';
+import './Closet.css';
+import { useState } from 'react';
 
 interface attributes {
   season: string;
@@ -23,6 +24,8 @@ interface ClosetProps {
 
 export const Closet = ({ items }: ClosetProps): JSX.Element => {
 
+  const [filteredItems, setFilteredItems] = useState(); //Probably need to handle this piece of state in App.tsx
+
   const mappedItems = closetData.data.map(item => {
     return (
       <Card
@@ -33,10 +36,15 @@ export const Closet = ({ items }: ClosetProps): JSX.Element => {
     )
   })
 
+  const handleFilterButton = (): Item[] => {
+    console.log('filter by type!') //eventually this will be an API call
+  }
+
   return (
     <div>
       <h2>My Closet</h2>
-      <div className="cards-container">
+      <button onClick={handleFilterButton} id='filter--att' className='filter-button'>Filter by Type</button>
+      <div className='cards-container'>
         {mappedItems}
       </div>
     </div>
