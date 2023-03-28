@@ -9,3 +9,6 @@ nav {
 .nav-button {
   background-color: red;
 }
+
+/* need to remove the underline from Link, discuss if should 
+be in global styles or for each css file. */
