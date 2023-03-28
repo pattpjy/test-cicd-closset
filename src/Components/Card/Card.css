@@ -3,13 +3,13 @@
   display: flex;
   flex-direction: column;
   height: 35vh;
-  justify-content: space-around;
+  justify-content: flex-end;
   width: 38vw;
 }
 
 .card-image {
-  height: 25vh;
-  width: 35vw;
+  height: 27vh;
+  width: 38vw;
 }
 
 .delete-banner {
@@ -20,5 +20,4 @@
   background-color: #2a2a2a;
   height: 8vh;
   width: 38vw;
-  margin-top: 15%;
 }
