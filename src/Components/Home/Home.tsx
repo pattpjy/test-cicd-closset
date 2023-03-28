@@ -1,6 +1,10 @@
-export const Home = (): JSX.Element => {
-  return (
-    <h2>Home Page</h2>
-  )
-}
+import React from 'react';
+import './Home.css';
+import images from './images.png'
 
+interface MenuItem {
+  iconSrc: string;
+  text: string;
+  onClick: () => void;
+ }
+ 
