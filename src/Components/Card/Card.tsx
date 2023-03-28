@@ -5,14 +5,14 @@ interface CardProps {
   image: string,
 }
 
-export const Card: React.FC = ({ id, image: CardProps}): JSX.Element => {
+export const Card = ({ id, image }: CardProps): JSX.Element => {
 
   return (
     <div key={id} className="card-container">
       <Link to={`/api/v1/users/:id/items/${id}`}>
         <img src={image} alt="Image of clothing item" className="card-image grow" />
-        <p className="delete-banner">Delete Item</p>
       </Link>
+        <p className="delete-banner">Delete Item</p>
     </div>
   )
 }
