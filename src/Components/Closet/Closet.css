@@ -1,0 +1,19 @@
+.cards-container {
+  align-content: space-around;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  height: 80vh;
+  width: 80vw;
+}
+
+h2 {
+  margin-top: 20%;
+}
+
+.filter-button {
+  background-color: #B8C0FF;
+  color: #2a2a2a;
+  box-shadow: 10px 5px 5px rgba(0, 0, 0, 0.2);
+}
