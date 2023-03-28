@@ -4,10 +4,9 @@ import "./Header.css"
 
 export const Header = (): JSX.Element => {
 
-  return(
+  return (
     <NavLink to="/" id="logo" >
       <img className="logo-img" src={logo}></img>
     </NavLink>
-    
-  )
+  );
 }
