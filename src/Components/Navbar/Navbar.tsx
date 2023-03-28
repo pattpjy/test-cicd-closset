@@ -1,19 +1,13 @@
-import React from "react";
-import { Link } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 import './Navbar.css'
 
-
 export function Navbar() {
-
+  
   return (
-    <nav>
-      <Link to={"/"}>
-        <button className="nav-button">home icon</button>
-      </Link>
-      {/* will need get requests for other buttons, 
-      need to discuss creating an apiCalls folder and having reusable requests */}
-      <button className="nav-button">my closet icon</button>
-      <button className="nav-button">my list icon</button>
+    <nav id="nav-bar">
+      <NavLink className="" to="/"><i className="fa-regular fa-house-chimney-blank"></i></NavLink>
+      <NavLink className="nav-buttons" to="/api/v1/users/:id/items" ><i className="fa-regular fa-clothes-hanger"></i></NavLink>
+      <NavLink className="nav-buttons" to="/api/v1/users/:id/lists"><i className="fa-regular fa-square-list"></i></NavLink>
     </nav>
   );
 }
