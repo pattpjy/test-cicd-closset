@@ -1,5 +1,4 @@
 import { Card } from "../Card/Card";
-import "./Works.css";
 import { closetData } from "../../MockData/ClosetData.js";
 
 interface attributes {
@@ -12,25 +11,25 @@ interface attributes {
 }
 
 interface Item {
-  item: {
-    id: number, 
-    type: string,
-    attributes: attributes
-  }
+  id: number, 
+  type: string,
+  attributes: attributes,
 }
 
 interface ClosetProps {
-  item: Item[]
+  items: Item[]
 }
 
-export const Closet: React.FC = ({ items: ClosetProps}): JSX.Element => {
+export const Closet = ({ items }: ClosetProps): JSX.Element => {
 
   const mappedItems = closetData.data.map(item => {
-    return 
+    return (
       <Card
+        key={item.id}
         id={item.id}
-        image={item.image_url}
+        image={item.attributes.image_url}
       />
+    )
   })
 
   return (
