@@ -1,5 +1,6 @@
 import { Card } from "../Card/Card";
 import { closetData } from "../../MockData/ClosetData.js";
+import "./Closet.css";
 
 interface attributes {
   season: string;
