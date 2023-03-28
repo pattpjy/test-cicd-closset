@@ -1,0 +1,17 @@
+.card-container {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  height: 35vh;
+  justify-content: space-around;
+  width: 38vw;
+}
+
+.card-image {
+  height: 25vh;
+  width: 35vw;
+}
+
+.delete-banner {
+  margin: 0;
+}
