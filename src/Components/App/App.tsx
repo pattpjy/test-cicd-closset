@@ -1,6 +1,6 @@
 import './App.css'
 import { Route, Routes } from "react-router"
-import { Home } from "../Home/Home"
+import { AppMenu } from "../Home/Home"
 import { PageNotFound } from "../PageNotFound/PageNotFound"
 import { Closet } from "../Closet/Closet"
 import { Details } from "../Details/Details"
@@ -12,7 +12,7 @@ function App() {
   return (
     <main>
       <Routes>
-        <Route path="/" element={<Home />} />
+        <Route path="/" element={<AppMenu />} />
         <Route path="/*" element={<PageNotFound />} />
         <Route path="/api/v1/users/:id/items" element={<Closet />} />
         <Route path="/api/v1/users/:id/items/:id" element={<Details />} />
