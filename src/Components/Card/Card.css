@@ -13,5 +13,12 @@
 }
 
 .delete-banner {
-  margin: 0;
+  color: #B8C0FF;
+}
+
+.banner-container {
+  background-color: #2a2a2a;
+  height: 8vh;
+  width: 38vw;
+  margin-top: 15%;
 }
