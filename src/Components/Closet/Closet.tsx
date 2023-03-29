@@ -1,7 +1,7 @@
-import { Card } from '../Card/Card';
-import { closetData } from '../../MockData/ClosetData.js';
-import './Closet.css';
-import { useState } from 'react';
+import { Card } from "../Card/Card";
+import { closetData } from "../../MockData/ClosetData.js";
+import "./Closet.css";
+import { useState } from "react";
 
 interface attributes {
   season: string;
@@ -13,36 +13,51 @@ interface attributes {
 }
 
 interface Item {
-  id: number, 
-  type: string,
-  attributes: attributes,
+  id: number;
+  type: string;
+  attributes: attributes;
 }
 
 interface ClosetProps {
-  items: Item[]
+  items: Item[];
 }
 
 export const Closet = ({ items }: ClosetProps): JSX.Element => {
-
   const [filteredItems, setFilteredItems] = useState(); //Probably need to handle this piece of state in App.tsx
 
-  const mappedItems = closetData.data.map(item => {
+  const mappedItems = closetData.data.map((item) => {
     return (
-      <Card
-        key={item.id}
-        id={item.id}
-        image={item.attributes.image_url}
-      />
-    )
-  })
+      <Card key={item.id} id={item.id} image={item.attributes.image_url} />
+    );
+  });
 
-  const handleFilter = (): void => {
-    const type = document.querySelector<HTMLSelectElement>("#filter--clothing-type")!
-    const color = document.querySelector<HTMLSelectElement>("#filter--color")!
-    const favorite = document.querySelector<HTMLSelectElement>("#filter--favorite")!
-    const season = document.querySelector<HTMLSelectElement>("#filter--season")!
-    console.log("Queries:", type.value, color.value, favorite.value, season.value) // these will be used for our queries
-  }
+  const handleFilter = async (): Promise<void> => {
+    const type = document.querySelector<HTMLSelectElement>(
+      "#filter--clothing-type"
+    )!;
+    const color = document.querySelector<HTMLSelectElement>("#filter--color")!;
+    const favorite =
+      document.querySelector<HTMLSelectElement>("#filter--favorite")!;
+    const season =
+      document.querySelector<HTMLSelectElement>("#filter--season")!;
+    // console.log("Queries:", type.value, color.value, favorite.value, season.value) // these will be used for our queries
+    const queries = [
+      { name: "season", value: season.value },
+      { name: "type", value: type.value },
+      { name: "color", value: color.value },
+      { name: "favorite", value: favorite.value },
+    ];
+    const truthyQueries = queries.filter(({ value }) => value);
+    const queriesString = truthyQueries
+      .map(({ name, value }) => `${name}=${value}`)
+      .join("&");
+    const url = `http://localhost:5000/api/v1/users/1/items/find_all?${queriesString}`;
+    console.log(url);
+    // const response = await fetch(url);
+
+    // const data = await response.json();
+    // setFilteredItems(data);
+  };
 
   return (
     <div>
@@ -82,9 +97,7 @@ export const Closet = ({ items }: ClosetProps): JSX.Element => {
           <option value="favorites">Only Favorites</option>
         </select>
       </div>
-      <div className='cards-container'>
-        {mappedItems}
-      </div>
+      <div className="cards-container">{mappedItems}</div>
     </div>
-  )
-}
+  );
+};
