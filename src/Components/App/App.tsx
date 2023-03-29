@@ -6,6 +6,7 @@ import { Closet } from "../Closet/Closet"
 import { Details } from "../Details/Details"
 import { MyLists } from "../MyLists/MyLists"
 import { List } from "../List/List"
+import { AddItem } from '../Add Item/AddItem'
 
 function App() {
  
@@ -14,6 +15,7 @@ function App() {
       <Routes>
         <Route path="/" element={<AppMenu />} />
         <Route path="/*" element={<PageNotFound />} />
+        <Route path="/addItem" element={<AddItem />} />
         <Route path="/api/v1/users/:id/items" element={<Closet />} />
         <Route path="/api/v1/users/:id/items/:id" element={<Details />} />
         <Route path="/api/v1/users/:id/lists" element={<MyLists />} />
