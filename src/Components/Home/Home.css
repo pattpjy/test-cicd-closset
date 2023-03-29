@@ -60,6 +60,7 @@ body {
   width: calc(85% - 50px);
   /* min-width: 100vw; */
   max-width: 250px;
+  /* background-color: ; */
 }
 
 .menu-item:hover {
@@ -75,6 +76,5 @@ body {
 .menu-text {
   font-size: 19px;
   font-weight: 500;
-  color: #333333;
   text-align: center;
 }

@@ -11,7 +11,6 @@ interface MenuItem {
 }
 
 export const AppMenu: React.FC = () => {
-  const logoSrc = images;
   const menuItems: MenuItem[] = [
     { iconSrc: images, text: 'My Closet', path: '/api/v1/users/:id/items' },
     { iconSrc: images, text: 'My List', path: '/api/v1/users/:id/lists' },
