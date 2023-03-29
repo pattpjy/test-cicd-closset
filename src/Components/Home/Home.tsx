@@ -17,9 +17,6 @@ export const AppMenu: React.FC = () => {
   ];
   return (
     <div className="container">
-      <div className="logo-container">
-        <img className="logo" src={Logoo} alt="Logo" />
-      </div>
       {menuItems.map(({ text, path }, index) => (
         <Link className="menu-item" key={index} to={path}>
           <div className="menu-text">{text}</div>
