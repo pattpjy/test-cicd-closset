@@ -56,9 +56,9 @@ body {
   transition: all 0.2s ease-in-out;
   background-color: #fff;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-  width: calc(33.33% - 16px);
-  min-width: 100vw;
-  /* max-width: 200px; */
+  width: calc(85% - 50px);
+  /* min-width: 100vw; */
+  max-width: 250px;
 }
 
 .menu-item:hover {
@@ -72,7 +72,7 @@ body {
 }
 
 .menu-text {
-  font-size: 16px;
+  font-size: 19px;
   font-weight: 500;
   color: #333333;
   text-align: center;
