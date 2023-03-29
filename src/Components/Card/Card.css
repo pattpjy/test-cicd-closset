@@ -10,6 +10,7 @@
 .card-image {
   height: 27vh;
   width: 38vw;
+  border: 2px solid #2a2a2a;
 }
 
 .delete-banner {
