@@ -12,7 +12,7 @@ export const AppMenu: React.FC = () => {
   const menuItems: MenuItem[] = [
     { text: 'My Closet', path: '/api/v1/users/:id/items' },
     { text: 'My List', path: '/api/v1/users/:id/lists' },
-    { text: 'Add New Item', path: '/api/v1/users/:id/items/new' },
+    { text: 'Add New Item', path: '/addItem' },
     { text: 'Create New List', path: '/api/v1/users/:id/lists/new' }
   ];
   return (
