@@ -54,7 +54,6 @@ export const Closet = ({ items }: ClosetProps): JSX.Element => {
     const url = `http://localhost:5000/api/v1/users/1/items/find_all?${queriesString}`;
     console.log(url);
     // const response = await fetch(url);
-
     // const data = await response.json();
     // setFilteredItems(data);
   };
