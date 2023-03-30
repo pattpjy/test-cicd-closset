@@ -1,3 +1,9 @@
 .logo-img {
   height: 20vh;
 }
+
+.header-container {
+  width: 45vw;
+  height: 20vh;
+  margin-top: 15%;
+}
