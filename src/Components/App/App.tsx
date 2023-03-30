@@ -8,6 +8,7 @@ import { MyLists } from "../MyLists/MyLists";
 import { List } from "../List/List";
 import { AddItem } from '../AddItem/AddItem';
 import { Header } from '../Header/Header';
+import { Navbar } from '../Navbar/Navbar';
 
 function App() {
  
@@ -23,6 +24,7 @@ function App() {
         <Route path="/api/v1/users/:id/lists" element={<MyLists />} />
         <Route path="/api/v1/users/:id/lists/:id" element={<List />} />
       </Routes>
+      <Navbar />
     </main>
   )
 }
