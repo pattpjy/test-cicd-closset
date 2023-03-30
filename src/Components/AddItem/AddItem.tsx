@@ -16,7 +16,6 @@ export const AddItem: React.FC = (): JSX.Element => {
   
     return (
       <>
-      <Header />
         <div className="form-container">
           <form className="form">
             <label className="upload-container">
