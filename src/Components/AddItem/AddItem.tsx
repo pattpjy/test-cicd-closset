@@ -15,17 +15,18 @@ export const AddItem: React.FC = (): JSX.Element => {
     
   
     return (
-      <>
         <div className="form-container">
+          <h2 className="form-title">Add New Item</h2>
           <form className="form">
             <label className="upload-container">
               Upload or take a photo
-              <input
+              <input 
+                className='img-input'
                 accept="image/*,capture=camera"
                 type="file"
               />
             </label>
-            <select name="type">
+            <select  className="dropdown" name="type">
               <option value="">Clothing Type</option>
               <option value="tops">Tops</option>
               <option value="bottoms">Bottoms</option>
@@ -34,7 +35,7 @@ export const AddItem: React.FC = (): JSX.Element => {
               <option value="accessories">Accessories</option>
               <option value="other">Other</option>
             </select>
-            <select name="color">
+            <select className="dropdown" name="color">
               <option value="">Color</option>
               <option value="red">Red</option>
               <option value="orange">Orange</option>
@@ -47,7 +48,7 @@ export const AddItem: React.FC = (): JSX.Element => {
               <option value="neutral">Neutral</option>
               <option value="other">Multi</option>
             </select>
-            <select name="season">
+            <select className="dropdown" name="season">
               <option value="">Season</option>
               <option value="fall">Fall</option>
               <option value="winter">Winter</option>
@@ -60,12 +61,11 @@ export const AddItem: React.FC = (): JSX.Element => {
             </label>
             <label htmlFor="caption" className="notes-input">
               Notes
-              <input type="text" name="notes" />
+              <input className="notes-box" 
+               type="text" name="notes" />
             </label>
             <button type="submit" value="Submit" className="form-button">Add Item!</button>
           </form>
         </div>
-        <Navbar />
-      </>
     );
 }
