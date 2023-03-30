@@ -19,7 +19,7 @@ export const Card = ({ id, image }: CardProps): JSX.Element => {
         <img src="https://www.uniqlo.com/jp/ja/contents/feature/masterpiece/common_22ss/img/products/contentsArea_itemimg_16.jpg" alt='Image of clothing item' className='card-image' />
       </Link>
       <div className='banner-container'>
-        <p onClick={handleDeleteButton} className='delete-banner'>Delete Item?</p>
+        <p onClick={handleDeleteButton} className='delete-banner'><i className="fa-light fa-trash-can"></i> Delete</p>
       </div>
     </div>
   )
