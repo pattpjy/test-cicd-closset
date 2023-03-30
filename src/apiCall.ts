@@ -22,8 +22,12 @@ export const createItem = async (data: any) => {
     // hard-coding this fetch for user 1 for now, make dynamic if we add other users
   const response = await fetch(url, {
     method: "POST",
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify(data),
+    // "There is no "Content-Type" key in the headers — the 
+    // content type is multipart/form-data,
+    //  which is implied by the FormData object itself"
+    body: data,
+    // "The body is not stringified. The FormData API handles all 
+    // the necessary processing for the image to be sent over the web."
   });
   if (!response.ok) {
     throw new Error("Unable To Fetch Your Data. Try Later.");
