@@ -19,6 +19,13 @@ export const MyLists: React.FC<{ userId: number }> = ({ userId }) => {
   }, [userId]);
 
   return (
-
+    <div>
+      <h2>Custom Lists</h2>
+      <ul>
+        {lists.map((list) => (
+          <li key={list.id}>{list.name}</li>
+        ))}
+      </ul>
+    </div>
   );
 };
