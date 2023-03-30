@@ -3,7 +3,8 @@
 }
 
 .header-container {
-  width: 45vw;
+  display: flex;
+  justify-content: center;
   height: 20vh;
-  margin-top: 15%;
+  padding-top: 15%;
 }
