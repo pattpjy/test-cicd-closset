@@ -2,23 +2,24 @@
   align-items: center;
   display: flex;
   flex-direction: column;
-  height: 35vh;
+  height: 200px;
   justify-content: flex-end;
-  width: 38vw;
+  width: 150px;
+  margin-bottom: 8%;
 }
 
 .card-image {
-  height: 27vh;
-  width: 38vw;
-  border: 2px solid #2a2a2a;
+  height: 150px;
+  width: 150px;
 }
 
 .delete-banner {
   color: #B8C0FF;
+  text-align: center;
 }
 
 .banner-container {
   background-color: #2a2a2a;
-  height: 8vh;
-  width: 38vw;
+  height: 50px;
+  width: 150px;
 }
