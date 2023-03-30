@@ -13,6 +13,7 @@ export const MyLists: React.FC<{ userId: number }> = ({ userId }) => {
     const fetchLists = async () => {
       const response = await fetch(`https://closet-manager-be.herokuapp.com/api/v1/users/${userId}/lists`);
       const data = await response.json();
+      console.log(data)
       setLists(data);
     };
     fetchLists();
