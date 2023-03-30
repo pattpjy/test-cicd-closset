@@ -16,7 +16,7 @@ function App() {
         <Route path="/*" element={<PageNotFound />} />
         <Route path="/api/v1/users/:id/items" element={<Closet />} />
         <Route path="/api/v1/users/:id/items/:id" element={<Details />} />
-        <Route path="/api/v1/users/:id/lists" element={<MyLists />} />
+        <Route path="/api/v1/users/:id/lists" element={<MyLists userId={1} />} />
         <Route path="/api/v1/users/:id/lists/:id" element={<List />} />
       </Routes>
     </main>
