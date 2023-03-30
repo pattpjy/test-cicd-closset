@@ -16,7 +16,7 @@ export const AppMenu: React.FC = () => {
     { text: 'Create New List', path: '/api/v1/users/:id/lists/new' }
   ];
   return (
-    <div className="container">
+    <div className="home-container">
       {menuItems.map(({ text, path }, index) => (
         <Link className="menu-item" key={index} to={path}>
           <div className="menu-text">{text}</div>
