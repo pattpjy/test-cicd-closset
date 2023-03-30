@@ -5,10 +5,10 @@ import type { FormEvent } from 'react';
 
 export const AddItem: React.FC = (): JSX.Element => {
 
-  const handleSubmit = ({ preventDefault, target}: FormEvent<HTMLFormElement> ) => {
-    preventDefault()
+  const handleSubmit = ({target}: FormEvent<HTMLFormElement> ) => {
+    
     const formData = new FormData(target as HTMLFormElement)
-  
+    console.log(target)
     console.log(formData)
     createItem(formData)
       .then(data => console.log(data))
@@ -19,17 +19,18 @@ export const AddItem: React.FC = (): JSX.Element => {
     return (
       <div className="form-container">
         <h2 className="form-title">Add New Item</h2>
-        <form className="form" onSubmit={handleSubmit}>
-          <label className="upload-container">
+        <form className="form" onSubmit={(e => {e.preventDefault(); handleSubmit(e)})}>
+          <label htmlFor="image" className="upload-container">
             Upload or take a photo
             <input 
               className='img-input'
               accept="image/*,capture=camera"
               type="file"
+              name="image"
               required
             />
           </label>
-          <select  className="dropdown" name="type" required>
+          <select  className="dropdown" name="clothing_type" required>
             <option value="">Clothing Type</option>
             <option value="tops">Tops</option>
             <option value="bottoms">Bottoms</option>
@@ -58,11 +59,11 @@ export const AddItem: React.FC = (): JSX.Element => {
             <option value="spring">Spring</option>
             <option value="summer">Summer</option>
           </select>
-          <label htmlFor="caption" className="size-input">
+          <label htmlFor="size" className="size-input">
             Size
             <input type="text" name="size" />
           </label>
-          <label htmlFor="caption" className="notes-input">
+          <label htmlFor="notes" className="notes-input">
             Notes
             <input className="notes-box" 
               type="text" name="notes" />
