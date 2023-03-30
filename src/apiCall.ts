@@ -7,6 +7,15 @@ export const getAllItems = async () => {
   return response.json();
 };
 
+export const filterItems = async (url: string) => {
+  const response = await fetch(url);
+  console.log("Response", response)
+  if (!response.ok) {
+    throw new Error("Unable To Fetch Your Data. Try Later.");
+  }
+  return response.json();
+};
+
 export const createItem = async (userId: string, data: any) => {
   //data make an interface for the post data
 
