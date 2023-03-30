@@ -45,7 +45,7 @@ export const Closet = ({ items }: ClosetProps): JSX.Element => {
   }
 
   return (
-    <div>
+    <div className="closet-container">
       <h2>My Closet</h2>
       <div id="filter" onChange={handleFilter}>
         <select id="filter--clothing-type" name="type">
