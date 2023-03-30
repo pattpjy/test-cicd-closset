@@ -30,6 +30,7 @@ export const createItem = async (data: any) => {
     // the necessary processing for the image to be sent over the web."
   });
   if (!response.ok) {
+    console.log(response)
     throw new Error("Unable To Fetch Your Data. Try Later.");
   }
   return response.json();
