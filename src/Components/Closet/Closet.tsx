@@ -1,8 +1,7 @@
 import { Card } from "../Card/Card";
-import { closetData } from "../../MockData/ClosetData.js";
 import "./Closet.css";
-import { useState } from "react";
-import { filterItems } from "../../apiCall"
+import { useState, useEffect } from "react";
+import { filterItems, getAllItems} from "../../apiCall"
 
 interface attributes {
   season: string;
@@ -19,14 +18,28 @@ interface Item {
   attributes: attributes;
 }
 
-interface ClosetProps {
-  items: Item[];
-}
+export const Closet = (): JSX.Element => {
+  const [allItems, setAllItems] = useState<Item[]>([]);
+  const [filteredItems, setFilteredItems] = useState<Item[]>([]); 
+  const [fetchError, setFetchError] = useState<boolean>(false); 
 
-export const Closet = ({ items }: ClosetProps): JSX.Element => {
-  const [filteredItems, setFilteredItems] = useState(); //Probably need to handle this piece of state in App.tsx
+  useEffect(() => {
+    getAllItems()
+      .then((response) => {
+        setAllItems(response.data)
+        setFilteredItems(response.data)
+        setFetchError(false)
+        console.log("All Items:", allItems)
+      })
+      .catch((Error)  => {
+        console.log("All Items Fetch Error")
+        setFetchError(true)
+        setAllItems([])
+        setFilteredItems([])
+      })
+  }, [])
 
-  const mappedItems = closetData.data.map((item) => {
+  const mappedItems = filteredItems.map((item: Item): JSX.Element => {
     return (
       <Card key={item.id} id={item.id} image={item.attributes.image_url} />
     );
@@ -41,7 +54,7 @@ export const Closet = ({ items }: ClosetProps): JSX.Element => {
       document.querySelector<HTMLSelectElement>("#filter--favorite")!;
     const season =
       document.querySelector<HTMLSelectElement>("#filter--season")!;
-    // console.log("Queries:", type.value, color.value, favorite.value, season.value) // these will be used for our queries
+
     const queries = [
       { name: "season", value: season.value },
       { name: "type", value: type.value },
@@ -52,9 +65,20 @@ export const Closet = ({ items }: ClosetProps): JSX.Element => {
     const queriesString = truthyQueries
       .map(({ name, value }) => `${name}=${value}`)
       .join("&");
+
     const url = `https://closet-manager-be.herokuapp.com/api/v1/users/1/items/find_all?${queriesString}`;
-    console.log("URL:", url);
+
     filterItems(url)
+      .then((response) => {
+        console.log("Filtered Items:", response)
+          setFilteredItems(response.data)
+          setFetchError(false)
+        })
+      .catch((Error)  => {
+        console.log("Filter Fetch Error")
+        setFetchError(true)
+        setFilteredItems([])
+      })
   };
 
   return (
@@ -95,6 +119,8 @@ export const Closet = ({ items }: ClosetProps): JSX.Element => {
           <option value="favorites">Only Favorites</option>
         </select>
       </div>
+      {fetchError && <p>Unable to get items. Please try again later"</p>}
+      {filteredItems.length === 0 && <p>No Items Found</p>}
       <div className="cards-container">{mappedItems}</div>
     </div>
   );
