@@ -22,6 +22,7 @@ export const Closet = (): JSX.Element => {
   const [allItems, setAllItems] = useState<Item[]>([]);
   const [filteredItems, setFilteredItems] = useState<Item[]>([]); 
   const [fetchError, setFetchError] = useState<boolean>(false); 
+  const [loading, setLoading] = useState<boolean>(true); 
 
   useEffect(() => {
     getAllItems()
@@ -29,6 +30,7 @@ export const Closet = (): JSX.Element => {
         setAllItems(response.data)
         setFilteredItems(response.data)
         setFetchError(false)
+        setLoading(false)
         console.log("All Items:", allItems)
       })
       .catch((Error)  => {
@@ -36,6 +38,7 @@ export const Closet = (): JSX.Element => {
         setFetchError(true)
         setAllItems([])
         setFilteredItems([])
+        setLoading(false)
       })
   }, [])
 
@@ -67,7 +70,7 @@ export const Closet = (): JSX.Element => {
       .join("&");
 
     const url = `https://closet-manager-be.herokuapp.com/api/v1/users/1/items/find_all?${queriesString}`;
-
+    setLoading(true)
     filterItems(url)
       .then((response) => {
         console.log("Filtered Items:", response)
@@ -79,6 +82,7 @@ export const Closet = (): JSX.Element => {
         setFetchError(true)
         setFilteredItems([])
       })
+      setLoading(false)
   };
 
   return (
@@ -119,8 +123,9 @@ export const Closet = (): JSX.Element => {
           <option value="favorites">Only Favorites</option>
         </select>
       </div>
-      {fetchError && <p>Unable to get items. Please try again later"</p>}
-      {filteredItems.length === 0 && <p>No Items Found</p>}
+      {loading && <p className="loading-text">Loading ... </p>}
+      {fetchError && <p className="fetch-error-text">Unable to get items. Please try again later"</p>}
+      {!filteredItems.length && !loading && <p>No Items Found</p>}
       <div className="cards-container">{mappedItems}</div>
     </div>
   );
