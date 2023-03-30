@@ -2,6 +2,7 @@ import { Card } from "../Card/Card";
 import { closetData } from "../../MockData/ClosetData.js";
 import "./Closet.css";
 import { useState } from "react";
+import { filterItems } from "../../apiCall"
 
 interface attributes {
   season: string;
@@ -51,11 +52,9 @@ export const Closet = ({ items }: ClosetProps): JSX.Element => {
     const queriesString = truthyQueries
       .map(({ name, value }) => `${name}=${value}`)
       .join("&");
-    const url = `http://localhost:5000/api/v1/users/1/items/find_all?${queriesString}`;
-    console.log(url);
-    // const response = await fetch(url);
-    // const data = await response.json();
-    // setFilteredItems(data);
+    const url = `https://closet-manager-be.herokuapp.com/api/v1/users/1/items/find_all?${queriesString}`;
+    console.log("URL:", url);
+    filterItems(url)
   };
 
   return (
