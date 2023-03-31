@@ -7,19 +7,23 @@ import type { ChangeEvent } from "react"
 export const AddItem: React.FC = (): JSX.Element => {
 
   const [image, setImage] = useState<string>("");
+  const [error, setError] = useState<string>("");
 
   const handleSubmit = ({target}: FormEvent<HTMLFormElement> ) => {
     const formData = new FormData(target as HTMLFormElement)
     createItem(formData)
       .then(data => console.log(data))
-      .catch(err => console.log(err))
+      .catch(err => setError(err))
   }   
   
     return (
       <div className="form-container">
-        <h2 className="form-title">Add New Item</h2>
+        <div className='text-container'> 
+          <h2 className="form-title">Add New Item</h2>
+          {error && <p>Sorry, please try again.</p>}
+        </div>
         <form className="form" onSubmit={(e => {e.preventDefault(); handleSubmit(e)})}>
-          <img src={image} alt="Item Preview" className='image-preview'/>
+          <img src={image} alt="" className='image-preview'/>
           <label htmlFor="image" className="upload-container">
             Upload or take a photo
             <input 
@@ -61,11 +65,11 @@ export const AddItem: React.FC = (): JSX.Element => {
             <option value="summer">Summer</option>
           </select>
           <label htmlFor="size" className="size-input">
-            Size
+            Size:
             <input type="text" name="size" className="size-input" />
           </label>
           <label htmlFor="notes" className="notes-input">
-            Notes
+            Notes:
             <input className="notes-box" 
               type="text" name="notes" />
           </label>
