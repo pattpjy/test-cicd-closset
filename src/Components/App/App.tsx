@@ -9,6 +9,7 @@ import { List } from "../List/List";
 import { AddItem } from '../AddItem/AddItem';
 import { Header } from '../Header/Header';
 import { Navbar } from '../Navbar/Navbar';
+import { ItemNotFound } from '../ItemNotFound/ItemNotFound'
 
 function App() {
  
@@ -23,6 +24,7 @@ function App() {
         <Route path="/itemDetails/:id" element={<Details />} />
         <Route path="/lists" element={<MyLists />} />
         <Route path="/lists/:id" element={<List />} />
+        <Route path="/item-not-found" element={<ItemNotFound />} />
       </Routes>
       <Navbar />
     </main>
