@@ -28,13 +28,13 @@ export const AddList: React.FC = (): JSX.Element => {
     return response.json();
   };
 
-  const handleSubmit = ({ target }: FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async ({ target }: FormEvent<HTMLFormElement>) => {
     const inputData = new FormData(target as HTMLFormElement);
-    console.log(target);
-    console.log(inputData);
-    postCustomList(inputData)
-      .then((data) => console.log(data))
-      .catch((err) => console.log(err));
+    try {
+      await postCustomList(inputData);
+    } catch (err) {
+      console.log(err);
+    }
   };
 
   return (
