@@ -1,0 +1,21 @@
+.item-not-found {
+  background-color: #f1f1f1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  color: #2a2a2a
+}
+
+.item-not-found-btn {
+  background-color: #bbd0ff;
+  color: #2a2a2a;
+  height: 5vh;
+  width: 45vw;
+  font-size: 12px;
+}
+
+.empty-closet-image {
+  height: 50vh;
+  width: 60vw;
+}
