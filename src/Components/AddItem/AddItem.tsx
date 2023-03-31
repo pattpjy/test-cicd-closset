@@ -16,10 +16,9 @@ export const AddItem: React.FC = (): JSX.Element => {
       .then(data => {
         console.log(data)
         setSuccessfulPost(true);
-        target.reset();
-      })
+        })
       .catch(err => setError(err))
-  }   
+  }
   
     return (
       <div className="form-container">
@@ -28,7 +27,7 @@ export const AddItem: React.FC = (): JSX.Element => {
           {error && <p>Sorry, please try again.</p>}
           {successfulPost && <p>Item Added!</p>}
         </div>
-        <form className="form" id="form" onSubmit={(e => {e.preventDefault(); handleSubmit(e)})}>
+        <form className="form" id="form" onSubmit={(e => {e.preventDefault(); handleSubmit(e);})}>
           <img src={image} alt="" className='image-preview'/>
           <label htmlFor="image" className="upload-container">
             Upload or take a photo
