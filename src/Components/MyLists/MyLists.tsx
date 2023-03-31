@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react';
+import './MyLists.css'
 
 interface ListItem {
   id: number;
@@ -28,13 +29,13 @@ export const MyLists: React.FC<{ userId: number }> = ({ userId }) => {
   return (
     <div>
       <h2>Custom Lists</h2>
-      <ul>
+      <div className="button-container">
         {lists.map((list) => (
-          <li key={list.id}>
-            <button onClick={() => handleListClick(list.id)}>{list.name}</button>
-          </li>
+          <button key={list.id} className="list-button" onClick={() => handleListClick(list.id)}>
+            {list.name}
+          </button>
         ))}
-      </ul>
+      </div>
     </div>
   );
 };
