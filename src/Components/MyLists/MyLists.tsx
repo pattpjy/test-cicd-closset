@@ -8,6 +8,7 @@ interface ListItem {
 
 export const MyLists: React.FC<{ userId: number }> = ({ userId }) => {
   const [lists, setLists] = useState<ListItem[]>([]);
+  const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
     const fetchLists = async () => {
@@ -17,6 +18,7 @@ export const MyLists: React.FC<{ userId: number }> = ({ userId }) => {
         setLists(data.data.map((list:any) => ({ id: parseInt(list.id), name: list.attributes.name })));
       } catch (error) {
         console.error(error);
+        setError('An error occurred while fetching the lists.');
       }
     };
     fetchLists();
@@ -29,13 +31,17 @@ export const MyLists: React.FC<{ userId: number }> = ({ userId }) => {
   return (
     <div>
       <h2>Custom Lists</h2>
-      <div className="button-container">
-        {lists.map((list) => (
-          <button key={list.id} className="list-button" onClick={() => handleListClick(list.id)}>
-            {list.name}
-          </button>
-        ))}
-      </div>
+      {error ? (
+        <h2>{error}</h2>
+      ) : (
+        <div className="button-container">
+          {lists.map((list) => (
+            <button key={list.id} className="list-button" onClick={() => handleListClick(list.id)}>
+              {list.name}
+            </button>
+          ))}
+        </div>
+      )}
     </div>
   );
 };
