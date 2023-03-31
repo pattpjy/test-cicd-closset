@@ -21,12 +21,18 @@ export const MyLists: React.FC<{ userId: number }> = ({ userId }) => {
     fetchLists();
   }, [userId]);
 
+  const handleListClick = (listId: number) => {
+    console.log(`List with ID ${listId} clicked`);
+  };
+
   return (
     <div>
       <h2>Custom Lists</h2>
       <ul>
         {lists.map((list) => (
-          <li key={list.id}>{list.name}</li>
+          <li key={list.id}>
+            <button onClick={() => handleListClick(list.id)}>{list.name}</button>
+          </li>
         ))}
       </ul>
     </div>
