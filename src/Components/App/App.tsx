@@ -19,10 +19,10 @@ function App() {
         <Route path="/" element={<AppMenu />} />
         <Route path="/*" element={<PageNotFound />} />
         <Route path="/addItem" element={<AddItem />} />
-        <Route path="/api/v1/users/:id/items" element={<Closet />} />
-        <Route path="/api/v1/users/:id/items/:id" element={<Details />} />
-        <Route path="/api/v1/users/:id/lists" element={<MyLists userId={1} />} />
-        <Route path="/api/v1/users/:id/lists/:id" element={<List />} />
+        <Route path="/myCloset" element={<Closet />} />
+        <Route path="/itemDetails/:id" element={<Details />} />
+        <Route path="/lists" element={<MyLists userId={1} />} />
+        <Route path="/lists/:id" element={<List />} />
       </Routes>
       <Navbar />
     </main>
