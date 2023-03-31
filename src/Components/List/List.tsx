@@ -10,7 +10,7 @@ export const List: React.FC = (): JSX.Element => {
   //apiCall Function  these need to move to apiCall file
   const postCustomList = async (data: any) => {
     // we cannot leave data: any!! We should make an interface
-    const url = ``;
+    const url = `https://closet-manager-be.herokuapp.com/api/v1/users/1/lists`;
     const response = await fetch(url, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
