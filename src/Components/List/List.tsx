@@ -1,4 +1,4 @@
-import React from "react";
+import React, { FormEvent } from "react";
 import { Header } from "../Header/Header";
 import { Navbar } from "../Navbar/Navbar";
 import { useState } from "react";
@@ -22,23 +22,32 @@ export const List: React.FC = (): JSX.Element => {
     return response.json();
   };
 
-  const createCustomList = async () => {
+  const onSubmitHandler = async ({ target }: FormEvent<HTMLFormElement>) => {
+    const formInput = new FormData(target as HTMLFormElement);
+
     try {
-    } catch (Error) {
+      // line 20 is for throw error to see styling
+      // throw new Error("TRY STYLING");
+      const newList = await postCustomList(formInput);
+
+      return setNewCustomList(newList);
+    } catch (error) {
       setHasError(true);
     }
-  };
-
-  const onClickHandler = () => {
-    createCustomList();
   };
   return (
     <div className="form-container">
       <h2 className="form-title">Add My New Custom List</h2>
-      <form className="form">
+      <form
+        className="form"
+        onSubmit={(event) => {
+          event.preventDefault();
+          onSubmitHandler(event);
+        }}
+      >
         <label htmlFor="caption" className="custom-list-input">
           My custom list Name
-          <input type="text" name="custom-name" />
+          <input type="text" name="custom-name" required />
         </label>
         <button
           type="submit"
