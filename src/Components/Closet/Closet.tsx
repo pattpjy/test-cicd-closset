@@ -49,7 +49,7 @@ export const Closet = (): JSX.Element => {
   });
 
   const handleFilter = async (): Promise<void> => {
-    const type = document.querySelector<HTMLSelectElement>(
+    const clothing_type = document.querySelector<HTMLSelectElement>(
       "#filter--clothing-type"
     )!;
     const color = document.querySelector<HTMLSelectElement>("#filter--color")!;
@@ -60,7 +60,7 @@ export const Closet = (): JSX.Element => {
 
     const queries = [
       { name: "season", value: season.value },
-      { name: "type", value: type.value },
+      { name: "type", value: clothing_type.value },
       { name: "color", value: color.value },
       { name: "favorite", value: favorite.value },
     ];
