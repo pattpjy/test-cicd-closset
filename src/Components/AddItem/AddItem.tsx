@@ -31,7 +31,7 @@ export const AddItem: React.FC = (): JSX.Element => {
             />
           </label>
           <select  className="dropdown" name="clothing_type" required>
-            <option value="">Clothing Type</option>
+            <option value="" disabled selected>Clothing Type</option>
             <option value="tops">Tops</option>
             <option value="bottoms">Bottoms</option>
             <option value="outerwear">Outerwear</option>
@@ -40,7 +40,7 @@ export const AddItem: React.FC = (): JSX.Element => {
             <option value="other">Other</option>
           </select>
           <select className="dropdown" name="color">
-            <option value="">Color</option>
+            <option value="" disabled selected>Color</option>
             <option value="red">Red</option>
             <option value="orange">Orange</option>
             <option value="yellow">Yellow</option>
@@ -53,7 +53,7 @@ export const AddItem: React.FC = (): JSX.Element => {
             <option value="other">Multi</option>
           </select>
           <select className="dropdown" name="season">
-            <option value="">Season</option>
+            <option value="" disabled selected>Season</option>
             <option value="fall">Fall</option>
             <option value="winter">Winter</option>
             <option value="spring">Spring</option>
