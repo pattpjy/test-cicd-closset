@@ -8,11 +8,16 @@ export const AddItem: React.FC = (): JSX.Element => {
 
   const [image, setImage] = useState<string>("");
   const [error, setError] = useState<string>("");
+  const [successfulPost, setSuccessfulPost] = useState<boolean>(false);
 
   const handleSubmit = ({target}: FormEvent<HTMLFormElement> ) => {
     const formData = new FormData(target as HTMLFormElement)
     createItem(formData)
-      .then(data => console.log(data))
+      .then(data => {
+        console.log(data)
+        setSuccessfulPost(true);
+        target.reset();
+      })
       .catch(err => setError(err))
   }   
   
@@ -21,8 +26,9 @@ export const AddItem: React.FC = (): JSX.Element => {
         <div className='text-container'> 
           <h2 className="form-title">Add New Item</h2>
           {error && <p>Sorry, please try again.</p>}
+          {successfulPost && <p>Item Added!</p>}
         </div>
-        <form className="form" onSubmit={(e => {e.preventDefault(); handleSubmit(e)})}>
+        <form className="form" id="form" onSubmit={(e => {e.preventDefault(); handleSubmit(e)})}>
           <img src={image} alt="" className='image-preview'/>
           <label htmlFor="image" className="upload-container">
             Upload or take a photo
@@ -55,7 +61,7 @@ export const AddItem: React.FC = (): JSX.Element => {
             <option value="black">Black</option>
             <option value="white">White</option>
             <option value="neutral">Neutral</option>
-            <option value="other">Multi</option>
+            <option value="multi">Multi</option>
           </select>
           <select className="dropdown" name="season">
             <option value="" disabled selected>Season</option>
