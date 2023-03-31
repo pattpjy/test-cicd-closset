@@ -21,7 +21,7 @@ function App() {
         <Route path="/addItem" element={<AddItem />} />
         <Route path="/myCloset" element={<Closet />} />
         <Route path="/itemDetails/:id" element={<Details />} />
-        <Route path="/lists" element={<MyLists />} />
+        <Route path="/lists" element={<MyLists userId={1} />} />
         <Route path="/lists/:id" element={<List />} />
         <Route path="/addList" element={<AddList />} />
       </Routes>
