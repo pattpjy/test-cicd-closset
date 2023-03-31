@@ -1,25 +1,25 @@
-import React from 'react'
+import React, { useState } from 'react'
 import './AddItem.css';
 import { createItem } from '../../apiCall';
 import type { FormEvent } from 'react';
+import type { ChangeEvent } from "react"
 
 export const AddItem: React.FC = (): JSX.Element => {
 
+  const [image, setImage] = useState<string>("");
+
   const handleSubmit = ({target}: FormEvent<HTMLFormElement> ) => {
-    
     const formData = new FormData(target as HTMLFormElement)
-    console.log(target)
-    console.log(formData)
     createItem(formData)
       .then(data => console.log(data))
       .catch(err => console.log(err))
-  }
-      
+  }   
   
     return (
       <div className="form-container">
         <h2 className="form-title">Add New Item</h2>
         <form className="form" onSubmit={(e => {e.preventDefault(); handleSubmit(e)})}>
+          <img src={image} alt="Item Preview" className='image-preview'/>
           <label htmlFor="image" className="upload-container">
             Upload or take a photo
             <input 
@@ -28,6 +28,7 @@ export const AddItem: React.FC = (): JSX.Element => {
               type="file"
               name="image"
               required
+              onChange={({ target }: ChangeEvent<HTMLInputElement>) => setImage(URL.createObjectURL(target.files[0]))}
             />
           </label>
           <select  className="dropdown" name="clothing_type" required>
@@ -61,7 +62,7 @@ export const AddItem: React.FC = (): JSX.Element => {
           </select>
           <label htmlFor="size" className="size-input">
             Size
-            <input type="text" name="size" />
+            <input type="text" name="size" className="size-input" />
           </label>
           <label htmlFor="notes" className="notes-input">
             Notes
