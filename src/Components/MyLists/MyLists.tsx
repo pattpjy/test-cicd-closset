@@ -1,5 +1,4 @@
 import { useEffect, useState } from 'react';
-import React from 'react'
 
 interface ListItem {
   id: number;
@@ -11,10 +10,13 @@ export const MyLists: React.FC<{ userId: number }> = ({ userId }) => {
 
   useEffect(() => {
     const fetchLists = async () => {
-      const response = await fetch(`https://closet-manager-be.herokuapp.com/api/v1/users/${userId}/lists`);
-      const data = await response.json();
-      console.log(data)
-      setLists(data);
+      try {
+        const response = await fetch(`https://closet-manager-be.herokuapp.com/api/v1/users/${userId}/lists`);
+        const data = await response.json();
+        setLists(data.data.map((list:any) => ({ id: parseInt(list.id), name: list.attributes.name })));
+      } catch (error) {
+        console.error(error);
+      }
     };
     fetchLists();
   }, [userId]);

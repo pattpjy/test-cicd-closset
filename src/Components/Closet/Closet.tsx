@@ -1,7 +1,7 @@
-import { Card } from '../Card/Card';
-import { closetData } from '../../MockData/ClosetData.js';
-import './Closet.css';
-import { useState } from 'react';
+import { Card } from "../Card/Card";
+import "./Closet.css";
+import { useState, useEffect } from "react";
+import { filterItems, getAllItems} from "../../apiCall"
 
 interface attributes {
   season: string;
@@ -13,39 +13,80 @@ interface attributes {
 }
 
 interface Item {
-  id: number, 
-  type: string,
-  attributes: attributes,
+  id: number;
+  type: string;
+  attributes: attributes;
 }
 
-interface ClosetProps {
-  items: Item[]
-}
+export const Closet = (): JSX.Element => {
+  const [allItems, setAllItems] = useState<Item[]>([]);
+  const [filteredItems, setFilteredItems] = useState<Item[]>([]); 
+  const [fetchError, setFetchError] = useState<boolean>(false); 
+  const [loading, setLoading] = useState<boolean>(true); 
 
-export const Closet = ({ items }: ClosetProps): JSX.Element => {
+  useEffect(() => {
+    getAllItems()
+      .then((response) => {
+        setAllItems(response.data)
+        setFilteredItems(response.data)
+        setFetchError(false)
+        setLoading(false)
+        console.log("All Items:", allItems)
+      })
+      .catch((Error)  => {
+        console.log("All Items Fetch Error")
+        setFetchError(true)
+        setAllItems([])
+        setFilteredItems([])
+        setLoading(false)
+      })
+  }, [])
 
-  const [filteredItems, setFilteredItems] = useState(); //Probably need to handle this piece of state in App.tsx
-
-  const mappedItems = closetData.data.map(item => {
+  const mappedItems = filteredItems.map((item: Item): JSX.Element => {
     return (
-      <Card
-        key={item.id}
-        id={item.id}
-        image={item.attributes.image_url}
-      />
-    )
-  })
+      <Card key={item.id} id={item.id} image={item.attributes.image_url} />
+    );
+  });
 
-  const handleFilter = (): void => {
-    const type = document.querySelector<HTMLSelectElement>("#filter--clothing-type")!
-    const color = document.querySelector<HTMLSelectElement>("#filter--color")!
-    const favorite = document.querySelector<HTMLSelectElement>("#filter--favorite")!
-    const season = document.querySelector<HTMLSelectElement>("#filter--season")!
-    console.log("Queries:", type.value, color.value, favorite.value, season.value) // these will be used for our queries
-  }
+  const handleFilter = async (): Promise<void> => {
+    const type = document.querySelector<HTMLSelectElement>(
+      "#filter--clothing-type"
+    )!;
+    const color = document.querySelector<HTMLSelectElement>("#filter--color")!;
+    const favorite =
+      document.querySelector<HTMLSelectElement>("#filter--favorite")!;
+    const season =
+      document.querySelector<HTMLSelectElement>("#filter--season")!;
+
+    const queries = [
+      { name: "season", value: season.value },
+      { name: "type", value: type.value },
+      { name: "color", value: color.value },
+      { name: "favorite", value: favorite.value },
+    ];
+    const truthyQueries = queries.filter(({ value }) => value);
+    const queriesString = truthyQueries
+      .map(({ name, value }) => `${name}=${value}`)
+      .join("&");
+
+    const url = `https://closet-manager-be.herokuapp.com/api/v1/users/1/items/find_all?${queriesString}`;
+    setLoading(true)
+    filterItems(url)
+      .then((response) => {
+        console.log("Filtered Items:", response)
+          setFilteredItems(response.data)
+          setFetchError(false)
+        })
+      .catch((Error)  => {
+        console.log("Filter Fetch Error")
+        setFetchError(true)
+        setFilteredItems([])
+      })
+      setLoading(false)
+  };
 
   return (
-    <div>
+    <div className="closet-container">
       <h2>My Closet</h2>
       <div id="filter" onChange={handleFilter}>
         <select id="filter--clothing-type" name="type">
@@ -82,9 +123,10 @@ export const Closet = ({ items }: ClosetProps): JSX.Element => {
           <option value="favorites">Only Favorites</option>
         </select>
       </div>
-      <div className='cards-container'>
-        {mappedItems}
-      </div>
+      {loading && <p className="loading-text">Loading ... </p>}
+      {fetchError && <p className="fetch-error-text">Unable to get items. Please try again later"</p>}
+      {!filteredItems.length && !loading && <p>No Items Found</p>}
+      <div className="cards-container">{mappedItems}</div>
     </div>
-  )
-}
+  );
+};
