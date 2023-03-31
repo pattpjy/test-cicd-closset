@@ -1,7 +1,7 @@
-import './Home.css';
-import { Link } from 'react-router-dom';
-import React from 'react';
-import Logoo from './Logoo.png';
+import "./Home.css";
+import { Link } from "react-router-dom";
+import React from "react";
+import Logoo from "./Logoo.png";
 
 interface MenuItem {
   text: string;
@@ -10,10 +10,10 @@ interface MenuItem {
 
 export const AppMenu: React.FC = () => {
   const menuItems: MenuItem[] = [
-    { text: 'My Closet', path: '/myCloset' },
-    { text: 'My List', path: '/lists' },
-    { text: 'Add New Item', path: '/addItem' },
-    { text: 'Create New List', path: '' }
+    { text: "My Closet", path: "/myCloset" },
+    { text: "My List", path: "/lists" },
+    { text: "Add New Item", path: "/addItem" },
+    { text: "Create New List", path: "/addList" },
   ];
   return (
     <div className="home-container">
