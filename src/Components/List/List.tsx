@@ -23,10 +23,6 @@ export const List: React.FC = (): JSX.Element => {
   };
 
   const createCustomList = async () => {
-    let errorMsg = (value: string): any => {
-      throw new Error(value);
-    };
-
     try {
     } catch (Error) {
       setHasError(true);
