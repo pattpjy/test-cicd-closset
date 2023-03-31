@@ -10,17 +10,18 @@ export const MyLists: React.FC<{ userId: number }> = ({ userId }) => {
   const [lists, setLists] = useState<ListItem[]>([]);
   const [error, setError] = useState<string | null>(null);
 
+  const fetchLists = async () => {
+    try {
+      const response = await fetch(`https://closet-manager-be.herokuapp.com/api/v1/users/${userId}/lists`);
+      const data = await response.json();
+      setLists(data.data.map((list:any) => ({ id: parseInt(list.id), name: list.attributes.name })));
+    } catch (error) {
+      console.error(error);
+      setError('An error occurred while fetching the lists.');
+    }
+  };
+
   useEffect(() => {
-    const fetchLists = async () => {
-      try {
-        const response = await fetch(`https://closet-manager-be.herokuapp.com/api/v1/users/${userId}/lists`);
-        const data = await response.json();
-        setLists(data.data.map((list:any) => ({ id: parseInt(list.id), name: list.attributes.name })));
-      } catch (error) {
-        console.error(error);
-        setError('An error occurred while fetching the lists.');
-      }
-    };
     fetchLists();
   }, [userId]);
 
