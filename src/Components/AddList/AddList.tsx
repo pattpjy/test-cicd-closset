@@ -4,6 +4,7 @@ import { Navbar } from "../Navbar/Navbar";
 import { useState } from "react";
 import { json } from "react-router";
 import type { FormEvent } from "react";
+import "./AddList.css";
 
 interface Event {
   target: {
@@ -11,9 +12,16 @@ interface Event {
   };
 }
 
+interface Data {
+  list: {
+    name: string;
+  };
+}
+
 export const AddList: React.FC = (): JSX.Element => {
   const [newCustomList, setNewCustomList] = useState<string>("");
-  const [hasError, setHasError] = useState<boolean>(false);
+  const [hasError, setHasError] = useState<string | null>(null);
+  const [isPost, setIsPost] = useState<string | null>(null);
 
   //apiCall Function  these need to move to apiCall file
   const postCustomList = async (data: any) => {
@@ -27,18 +35,25 @@ export const AddList: React.FC = (): JSX.Element => {
     if (!response.ok) {
       throw new Error("Unable To Post Your Data. Try Later.");
     }
+    setIsPost("YOUR CUSTOM LIST IS CREATED");
     return response.json();
   };
+
   const handleInputChange = (event: Event) => {
     setNewCustomList(event.target.value);
   };
+
   const handleSubmit = async () => {
     console.log(newCustomList);
     try {
+      // next line is for throw error to see if the error message work
+      // throw new Error("WHERE AM I??");
       await postCustomList(newCustomList);
-    } catch (err) {
-      console.log(err);
+    } catch (error) {
+      console.error(error);
+      setHasError("UNABLE TO CREATE NEW CUSTOM LIST");
     }
+
     clearInput();
   };
   const clearInput = () => {
@@ -47,18 +62,18 @@ export const AddList: React.FC = (): JSX.Element => {
 
   return (
     <div className="form-container">
-      <h2 className="form-title">Add My New Custom List</h2>
+      <h2 className="form-title">Create New List</h2>
       <form
-        className="form"
+        className="form--list"
         onSubmit={(e) => {
           e.preventDefault();
           handleSubmit();
         }}
       >
-        <label htmlFor="name" className="custom-list-input">
-          My custom list Name
+        <label htmlFor="name" className="list--input">
           <input
             type="text"
+            placeholder="Add Custom List Name"
             name="name"
             value={newCustomList}
             onChange={(e) => handleInputChange(e)}
@@ -68,6 +83,8 @@ export const AddList: React.FC = (): JSX.Element => {
         <button type="submit" value="Submit" className="form-button">
           Add My Custom List
         </button>
+        {hasError && <h2>{hasError}</h2>}
+        {isPost && <h2>{isPost}</h2>}
       </form>
     </div>
   );
