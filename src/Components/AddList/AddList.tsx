@@ -12,20 +12,13 @@ interface Event {
   };
 }
 
-interface Data {
-  list: {
-    name: string;
-  };
-}
-
 export const AddList: React.FC = (): JSX.Element => {
   const [newCustomList, setNewCustomList] = useState<string>("");
   const [hasError, setHasError] = useState<string | null>(null);
   const [isPost, setIsPost] = useState<string | null>(null);
 
   //apiCall Function  these need to move to apiCall file
-  const postCustomList = async (data: any) => {
-    // we cannot leave data: any!! We should make an interface
+  const postCustomList = async (data: string) => {
     const url = `https://closet-manager-be.herokuapp.com/api/v1/users/1/lists`;
     const response = await fetch(url, {
       method: "POST",
