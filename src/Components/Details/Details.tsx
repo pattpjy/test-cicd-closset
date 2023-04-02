@@ -1,5 +1,68 @@
+import { useEffect, useState} from "react";
+import "./Details.css";
+import { useParams } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
+import { getSingleItem } from "../../apiCall"
+import { singleItemCleaning } from "../../util"
+
+interface attributes {
+  season: string;
+  clothing_type: string;
+  size: string;
+  color: string;
+  image_url: string;
+  notes: string;
+}
+
+interface Item {
+  id: number;
+  type: string;
+  attributes: attributes;
+}
+
 export const Details = (): JSX.Element => {
+  const params = useParams();
+  const navigate = useNavigate();
+  const [item, setItem] = useState<Item | undefined>();
+  const [fetchError, setFetchError] = useState<boolean>(false); 
+  const [loading, setLoading] = useState<boolean>(true); 
+
+  useEffect(() => {
+   getSingleItem(params.id!)
+   .then((response) => {
+        setItem(singleItemCleaning(response.data))
+        setFetchError(false)
+        setLoading(false)
+      })
+      .catch((Error)  => {
+        setFetchError(true)
+      })
+  }, []);
+
+   useEffect(() => {
+    if (fetchError) {
+      navigate('/item-not-found')
+    }
+  }, [fetchError]);
+
   return (
-    <h2>Details</h2>
+    <section className="details-section">
+      <h2 className="item-details-header">Details</h2>
+      {loading && <p>Loading...</p>}
+      {item && <div className="item-details-container">
+        <p className="item-details">{`${item!.attributes.color}`}</p>
+        <p className="item-details">{`${item!.attributes.season}`}</p>
+        <p className="item-details">{`${item!.attributes.clothing_type}`}</p>
+      </div>}
+      {item && <img className="details-image" src={item.attributes.image_url} alt='Image of clothing item'/> }
+      {item && item!.attributes.notes && <p className="item-notes">{item!.attributes.notes}</p>}
+      {!loading && <section className="details-button-container">
+        <NavLink to={`/edit/${params.id}`}>
+          <button className="details-edit-button">Edit</button>
+        </NavLink>
+        <button className="details-list-button">Add to List</button>
+        <button className="details-delete-button">Delete</button>
+      </section>}
+    </section>
   )
 }

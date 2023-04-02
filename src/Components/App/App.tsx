@@ -9,7 +9,8 @@ import { List } from "../List/List";
 import { AddItem } from "../AddItem/AddItem";
 import { Header } from "../Header/Header";
 import { Navbar } from "../Navbar/Navbar";
-import { AddList } from "../AddList/AddList";
+import { ItemNotFound } from "../ItemNotFound/ItemNotFound";
+import { EditItem } from "../EditItem/EditItem";
 
 function App() {
   return (
@@ -23,7 +24,8 @@ function App() {
         <Route path="/itemDetails/:id" element={<Details />} />
         <Route path="/lists" element={<MyLists userId={1} />} />
         <Route path="/lists/:id" element={<List />} />
-        <Route path="/addList" element={<AddList />} />
+        <Route path="/item-not-found" element={<ItemNotFound />} />
+        <Route path="/edit/:id" element={<EditItem />} />
       </Routes>
       <Navbar />
     </main>
