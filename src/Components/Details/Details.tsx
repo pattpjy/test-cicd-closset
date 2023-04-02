@@ -55,7 +55,10 @@ export const Details = (): JSX.Element => {
         <p className="item-details">{`${item!.attributes.clothing_type}`}</p>
       </div>}
       {item && <img className="details-image" src={item.attributes.image_url} alt='Image of clothing item'/> }
-      {item && item!.attributes.notes && <p className="item-notes">{item!.attributes.notes}</p>}
+      {item && item!.attributes.notes && <div className="notes-container"> 
+        <h2 className="item-notes-header">Notes</h2>
+        <p className="item-notes">{item!.attributes.notes}</p> 
+        </div>}
       {!loading && <section className="details-button-container">
         <NavLink to={`/edit/${params.id}`}>
           <button className="details-edit-button">Edit</button>
