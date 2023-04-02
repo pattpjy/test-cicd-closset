@@ -4,7 +4,7 @@ import { NavLink } from "react-router-dom";
 export const ItemNotFound = (): JSX.Element => {
   return (
      <section className="item-not-found">
-      <p>Error: No Item Details</p>
+      <p>Error: Unable to get item details</p>
       <NavLink to={"/"}>
         <button className="item-not-found-btn">Return Home</button>
       </NavLink>
