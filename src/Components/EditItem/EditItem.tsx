@@ -118,7 +118,7 @@ export const EditItem = (): JSX.Element => {
           <option value="other">Multi</option>
         </select>
         <select className="dropdown" id="itemSeason" name="season">
-          <option value="all_season">Season</option>
+          <option value="all_season">All Seasons</option>
           <option value="fall">Fall</option>
           <option value="winter">Winter</option>
           <option value="spring">Spring</option>
