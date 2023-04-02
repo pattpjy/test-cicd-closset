@@ -1,9 +1,9 @@
-import { useEffect, useState} from "react";
 import "./Details.css";
+import { useEffect, useState} from "react";
 import { useParams } from "react-router-dom";
 import { NavLink, useNavigate } from "react-router-dom";
-import { getSingleItem } from "../../apiCall"
-import { singleItemCleaning } from "../../util"
+import { getSingleItem } from "../../apiCall";
+import { singleItemCleaning } from "../../util";
 
 interface attributes {
   season: string;
@@ -50,9 +50,10 @@ export const Details = (): JSX.Element => {
       <h2 className="item-details-header">Details</h2>
       {loading && <p>Loading...</p>}
       {item && <div className="item-details-container">
-        <p className="item-details">{`${item!.attributes.color}`}</p>
-        <p className="item-details">{`${item!.attributes.season}`}</p>
-        <p className="item-details">{`${item!.attributes.clothing_type}`}</p>
+        <p className="item-details">{item!.attributes.color}</p>
+        <p className="item-details">{item!.attributes.season}</p>
+        <p className="item-details">{item!.attributes.clothing_type}</p>
+        {item!.attributes.size && <p className="item-details">{`size ${item!.attributes.size}`}</p>}
       </div>}
       {item && <img className="details-image" src={item.attributes.image_url} alt='Image of clothing item'/> }
       {item && item!.attributes.notes && <div className="notes-container"> 
