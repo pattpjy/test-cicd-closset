@@ -40,17 +40,21 @@ export const AddList: React.FC = (): JSX.Element => {
     console.log(newCustomList);
     try {
       // next line is for throw error to see if the error message work
-      // throw new Error("WHERE AM I??");
+      throw new Error("WHERE AM I??");
       await postCustomList(newCustomList);
     } catch (error) {
       console.error(error);
       setHasError("UNABLE TO CREATE NEW CUSTOM LIST");
     }
+    // Add set timeout to clear the alert message
 
     clearInput();
   };
   const clearInput = () => {
     setNewCustomList("");
+    setTimeout(() => {
+      setIsPost(null), setHasError(null);
+    }, 3000);
   };
 
   return (
