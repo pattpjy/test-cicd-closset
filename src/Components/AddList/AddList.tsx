@@ -1,9 +1,5 @@
 import React from "react";
-import { Header } from "../Header/Header";
-import { Navbar } from "../Navbar/Navbar";
 import { useState } from "react";
-import { json } from "react-router";
-import type { FormEvent } from "react";
 import "./AddList.css";
 
 interface Event {
@@ -40,13 +36,12 @@ export const AddList: React.FC = (): JSX.Element => {
     console.log(newCustomList);
     try {
       // next line is for throw error to see if the error message work
-      throw new Error("WHERE AM I??");
+      // throw new Error("WHERE AM I??");
       await postCustomList(newCustomList);
     } catch (error) {
       console.error(error);
       setHasError("UNABLE TO CREATE NEW CUSTOM LIST");
     }
-    // Add set timeout to clear the alert message
 
     clearInput();
   };
