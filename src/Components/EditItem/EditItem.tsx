@@ -9,9 +9,9 @@ interface attributes {
   [key: string]: string;
   season: string; 
   clothing_type: string;
-  // size: string;
+  size: string;
   color: string;
-  // notes: string;
+  notes: string;
 }
 
 interface Item {
@@ -26,6 +26,7 @@ export const EditItem = (): JSX.Element => {
   const [item, setItem] = useState<Item | undefined>();
   const [fetchError, setFetchError] = useState<boolean>(false); 
   const [itemUpdated, setItemUpdated] = useState<boolean>(false);
+  const [loading, setLoading] = useState<boolean>(true);
   
   const itemType: HTMLInputElement | null = document.querySelector("#itemType")
   const itemColor: HTMLInputElement | null = document.querySelector("#itemColor")
@@ -38,8 +39,9 @@ export const EditItem = (): JSX.Element => {
    .then((response) => {
         setItem(response.data)
         setFetchError(false)
+        setLoading(false)
       })
-      .catch((Error)  => {
+      .catch(()  => {
         setFetchError(true)
       })
   }, []);
@@ -55,14 +57,13 @@ export const EditItem = (): JSX.Element => {
 
   useEffect(() => {
     if (item) {
-      console.log(item.attributes)
       const itemDetails: attributes = item.attributes;
       const inputs = {
         'clothing_type': itemType,
         'color': itemColor,
         'season': itemSeason,
-        // 'size': itemSize,
-        // 'notes': itemNotes
+        'size': itemSize,
+        'notes': itemNotes
       };
 
     for (const [key, input] of Object.entries(inputs)) {
@@ -84,7 +85,7 @@ export const EditItem = (): JSX.Element => {
         setFetchError(true)
       }
       })
-      .catch((Error)  => {
+      .catch(()  => {
         setFetchError(true)
       })
   }
@@ -92,46 +93,47 @@ export const EditItem = (): JSX.Element => {
   return (
     <div className="form-container">
       <h2>Edit Item Details</h2>
-        <form className="form" onSubmit={(e => {e.preventDefault(); handleSubmit(e)})}>
-          <select  className="dropdown" id="itemType" name="clothing_type" required>
-            <option value="">Clothing Type</option>
-            <option value="tops">Tops</option>
-            <option value="bottoms">Bottoms</option>
-            <option value="outerwear">Outerwear</option>
-            <option value="shoes">Shoes</option>
-            <option value="accessories">Accessories</option>
-            <option value="other">Other</option>
-          </select>
-          <select className="dropdown" id="itemColor" name="color">
-            <option value="">Color</option>
-            <option value="red">Red</option>
-            <option value="orange">Orange</option>
-            <option value="yellow">Yellow</option>
-            <option value="green">Green</option>
-            <option value="blue">Blue</option>
-            <option value="purple">Purple</option>
-            <option value="black">Black</option>
-            <option value="white">White</option>
-            <option value="neutral">Neutral</option>
-            <option value="other">Multi</option>
-          </select>
-          <select className="dropdown" id="itemSeason" name="season">
-            <option value="all_season">Season</option>
-            <option value="fall">Fall</option>
-            <option value="winter">Winter</option>
-            <option value="spring">Spring</option>
-            <option value="summer">Summer</option>
-          </select>
-          <label htmlFor="size" className="size-input">
-            Size
-            <input id="itemSize" type="text" name="size" />
-          </label>
-          <label htmlFor="notes" className="notes-input">
-            Notes
-            <input className="notes-box" id="itemNotes"
-              type="text" name="notes" />
-          </label>
-          <button type="submit" value="Submit" className="form-button">Save</button>
+      {loading && <p>Loading...</p>}
+      <form className="form" onSubmit={(e => {e.preventDefault(); handleSubmit(e)})}>
+        <select  className="dropdown" id="itemType" name="clothing_type" required>
+          <option value="">Clothing Type</option>
+          <option value="tops">Tops</option>
+          <option value="bottoms">Bottoms</option>
+          <option value="outerwear">Outerwear</option>
+          <option value="shoes">Shoes</option>
+          <option value="accessories">Accessories</option>
+          <option value="other">Other</option>
+        </select>
+        <select className="dropdown" id="itemColor" name="color">
+          <option value="">Color</option>
+          <option value="red">Red</option>
+          <option value="orange">Orange</option>
+          <option value="yellow">Yellow</option>
+          <option value="green">Green</option>
+          <option value="blue">Blue</option>
+          <option value="purple">Purple</option>
+          <option value="black">Black</option>
+          <option value="white">White</option>
+          <option value="neutral">Neutral</option>
+          <option value="other">Multi</option>
+        </select>
+        <select className="dropdown" id="itemSeason" name="season">
+          <option value="all_season">Season</option>
+          <option value="fall">Fall</option>
+          <option value="winter">Winter</option>
+          <option value="spring">Spring</option>
+          <option value="summer">Summer</option>
+        </select>
+        <label htmlFor="size" className="size-input">
+          Size
+          <input id="itemSize" type="text" name="size" />
+        </label>
+        <label htmlFor="notes" className="notes-input">
+          Notes
+          <input className="notes-box" id="itemNotes"
+            type="text" name="notes" />
+        </label>
+        <button type="submit" value="Submit" className="form-button">Save</button>
         </form>
       </div>
   );
