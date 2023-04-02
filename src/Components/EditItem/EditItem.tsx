@@ -135,6 +135,6 @@ export const EditItem = (): JSX.Element => {
         </label>
         <button type="submit" value="Submit" className="form-button">Save</button>
         </form>
-      </div>
+    </div>
   );
 };
