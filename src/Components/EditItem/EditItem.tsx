@@ -9,9 +9,9 @@ interface attributes {
   [key: string]: string;
   season: string; 
   clothing_type: string;
-  size: string;
+  // size: string;
   color: string;
-  notes: string;
+  // notes: string;
 }
 
 interface Item {
@@ -55,13 +55,14 @@ export const EditItem = (): JSX.Element => {
 
   useEffect(() => {
     if (item) {
+      console.log(item.attributes)
       const itemDetails: attributes = item.attributes;
       const inputs = {
         'clothing_type': itemType,
         'color': itemColor,
         'season': itemSeason,
-        'size': itemSize,
-        'notes': itemNotes
+        // 'size': itemSize,
+        // 'notes': itemNotes
       };
 
     for (const [key, input] of Object.entries(inputs)) {
@@ -121,13 +122,13 @@ export const EditItem = (): JSX.Element => {
             <option value="spring">Spring</option>
             <option value="summer">Summer</option>
           </select>
-          <label htmlFor="size" className="size-input" id="itemSize">
+          <label htmlFor="size" className="size-input">
             Size
-            <input type="text" name="size" />
+            <input id="itemSize" type="text" name="size" />
           </label>
-          <label htmlFor="notes" className="notes-input" id="itemNotes">
+          <label htmlFor="notes" className="notes-input">
             Notes
-            <input className="notes-box" 
+            <input className="notes-box" id="itemNotes"
               type="text" name="notes" />
           </label>
           <button type="submit" value="Submit" className="form-button">Save</button>
