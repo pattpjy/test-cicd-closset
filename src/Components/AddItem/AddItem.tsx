@@ -28,7 +28,7 @@ export const AddItem: React.FC = (): JSX.Element => {
           {successfulPost && <p>Item Added!</p>}
         </div>
         <form className="form" id="form" onSubmit={(e => {e.preventDefault(); handleSubmit(e);})}>
-          <img src={image} alt="" className='image-preview'/>
+          {image && <img src={image} alt="" className='image-preview'/>}
           <label htmlFor="image" className="upload-container">
             Upload or take a photo
             <input 
