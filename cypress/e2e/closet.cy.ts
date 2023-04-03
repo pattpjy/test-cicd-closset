@@ -15,5 +15,8 @@ describe("Closet View", () => {
     cy.get(".banner-container").should("have.length", 3).should("be.visible");
     cy.get(':nth-child(1) > a > .card-image').should("be.visible");
   });
-  it("Should be able to delete an item from the closet")
+  it("Should be able to delete an item from the closet", () => {
+    cy.get(".banner-container").first().click();
+    cy.get(".card-image").should("have.length", 2).should("be.visible");
+  })
 });
