@@ -63,7 +63,6 @@ export const Closet = (): JSX.Element => {
       { name: "season", value: season.value },
       { name: "clothing_type", value: clothing_type.value },
       { name: "color", value: color.value },
-      { name: "favorite", value: favorite.value },
     ];
     const truthyQueries = queries.filter(({ value }) => value);
     const queriesString = truthyQueries
