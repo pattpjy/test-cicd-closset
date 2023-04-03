@@ -119,10 +119,6 @@ export const Closet = (): JSX.Element => {
           <option value="spring">Spring</option>
           <option value="summer">Summer</option>
         </select>
-        <select id="filter--favorite" name="favorite">
-          <option value="">See All</option>
-          <option value="favorites">Only Favorites</option>
-        </select>
       </div>
       {loading && <p className="loading-text">Loading ... </p>}
       {fetchError && <p className="fetch-error-text">Unable to get items. Please try again later"</p>}
