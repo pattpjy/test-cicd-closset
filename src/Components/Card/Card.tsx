@@ -7,7 +7,7 @@ import { SetStateAction } from 'react';
 import './Card.css';
 
 interface CardProps {
-  id: number | string,
+  id: string,
   image: string,
   setChange: Dispatch<SetStateAction<boolean>>,
 }
@@ -18,7 +18,7 @@ export const Card = ({ id, image, setChange }: CardProps): JSX.Element => {
 
   const onLoad = (): void => setLoaded(true)
 
-  const handleDeleteButton = (id: string | number) => {
+  const handleDeleteButton = (id: string) => {
    console.log(id)
    setChange(true)
    return deleteItem(id)
