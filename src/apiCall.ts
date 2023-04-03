@@ -36,6 +36,25 @@ export const createItem = async (data: any) => {
   return response.json();
 };
 
+export const editItem = async ({data}, id: number) => {
+
+  // we cannot leave data: any!! We should make an interface 
+  const url = `https://closet-manager-be.herokuapp.com/api/v1/users/1/items/${id}`;
+    // hard-coding this fetch for user 1 for now, make dynamic if we add other users
+  const response = await fetch(url, {
+    method: "PATCH",
+    headers: {
+    "Content-Type": "application/json"
+  },
+    body:  JSON.stringify(data) ,
+  });
+  if (!response.ok) {
+    console.log(response)
+    throw new Error("Unable To Update Item. Try Later.");
+  }
+  return response;
+};
+
 export const getSingleItem = async (id: string) => {
    const url = `https://closet-manager-be.herokuapp.com/api/v1/users/1/items/${id}`;
   // hard-coding this fetch for user 1 for now, make dynamic if we add other users
