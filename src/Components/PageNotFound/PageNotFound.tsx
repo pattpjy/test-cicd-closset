@@ -4,8 +4,7 @@ import { NavLink } from "react-router-dom";
 export const PageNotFound = (): JSX.Element => {
   return (
     <section className="page-not-found">
-      <h2>Oops!</h2>
-      <p>404: Page Not Found</p>
+      <h2>Oops! Page not found.</h2>
       <NavLink to={"/"}>
         <button className="page-not-found-btn">Return Home</button>
       </NavLink>
