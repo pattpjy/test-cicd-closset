@@ -61,7 +61,7 @@ export const Closet = (): JSX.Element => {
 
     const queries = [
       { name: "season", value: season.value },
-      { name: "type", value: clothing_type.value },
+      { name: "clothing_type", value: clothing_type.value },
       { name: "color", value: color.value },
       { name: "favorite", value: favorite.value },
     ];
