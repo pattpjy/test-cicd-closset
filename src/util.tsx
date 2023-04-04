@@ -2,7 +2,7 @@ interface attributes {
   season: string;
   clothing_type: string;
   size: string;
-  color: string;
+  color: string | undefined;
   image_url: string;
   notes: string;
 }
@@ -19,6 +19,9 @@ export const singleItemCleaning = (item: Item): Item => {
  }
  if (item!.attributes.notes === "empty again" || item!.attributes.notes === null) {
   item!.attributes.notes = ""
+ }
+  if (item!.attributes.color === "unspecified") {
+  item!.attributes.color = undefined;
  }
  return item
 }
