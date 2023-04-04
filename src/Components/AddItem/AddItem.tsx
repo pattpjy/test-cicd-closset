@@ -1,21 +1,27 @@
-import React, { useState } from 'react'
+import React, { useRef, useState } from 'react'
 import './AddItem.css';
 import { createItem } from '../../apiCall';
 import type { FormEvent } from 'react';
 import type { ChangeEvent } from "react"
+import type { MutableRefObject } from 'react';
 
 export const AddItem: React.FC = (): JSX.Element => {
 
   const [image, setImage] = useState<string>("");
   const [error, setError] = useState<string>("");
   const [successfulPost, setSuccessfulPost] = useState<boolean>(false);
+  const imageInputRef = useRef<HTMLInputElement>(null)
 
   const handleSubmit = ({target}: FormEvent<HTMLFormElement> ) => {
     const formData = new FormData(target as HTMLFormElement)
     createItem(formData)
       .then(data => {
         console.log(data)
-        setSuccessfulPost(true);
+        setSuccessfulPost(true)
+        setImage("")
+        if (imageInputRef.current) {
+          imageInputRef.current.value = ""
+        }
         })
       .catch(err => setError(err))
   }
@@ -44,6 +50,7 @@ export const AddItem: React.FC = (): JSX.Element => {
             name="image"
             required
             onChange={handleChange}
+            ref={imageInputRef}
           />
         </label>
         <select  className="dropdown" name="clothing_type" required>
@@ -85,6 +92,7 @@ export const AddItem: React.FC = (): JSX.Element => {
           <input className="notes-box" 
             type="text" name="notes" />
         </label>
+        <input type="reset" value="Clear" className="form-button"></input>
         <button type="submit" value="Submit" className="form-button">Add Item!</button>
       </form>
     </div>
