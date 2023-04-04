@@ -5,7 +5,7 @@
   width: 50vw;
 }
 
-.form-container {
+.list-form-container {
   align-items: center;
   cursor: pointer;
   display: flex;
@@ -21,7 +21,7 @@
 }
 
 .input {
+  font-size: 20px;
   height: 5vh;
   width: 57vw;
-  font-size: 20px;
 }
