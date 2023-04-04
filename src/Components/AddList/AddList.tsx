@@ -25,7 +25,7 @@ export const AddList: React.FC = (): JSX.Element => {
       navigate('/error')
     }
   }, [isPost, hasError]);
-  };
+  
 
 
   const handleInputChange = (event: Event) => {
