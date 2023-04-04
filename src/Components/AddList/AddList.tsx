@@ -25,6 +25,8 @@ export const AddList: React.FC = (): JSX.Element => {
       navigate('/error')
     }
   }, [isPost, hasError]);
+  };
+
 
   const handleInputChange = (event: Event) => {
     setNewCustomList(event.target.value);
@@ -51,7 +53,7 @@ export const AddList: React.FC = (): JSX.Element => {
   };
   
   return (
-    <div className="form-container">
+    <div className="list-form-container">
       <h2 className="form-title">Create New List</h2>
       <form
         className="form--list"
@@ -63,11 +65,12 @@ export const AddList: React.FC = (): JSX.Element => {
         <label htmlFor="name" className="list--input">
           <input
             type="text"
-            placeholder="Add Custom List Name"
+            placeholder="Type List Name Here"
             name="name"
             value={newCustomList}
             onChange={(e) => handleInputChange(e)}
             required
+            className="input"
           />
         </label>
         <button type="submit" value="Submit" className="form-button">
