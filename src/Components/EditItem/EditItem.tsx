@@ -5,11 +5,11 @@ import "./EditItem.css";
 import { getSingleItem, editItem } from "../../apiCall";
 
 interface attributes {
-  [key: string]: string | undefined;
+  [key: string]: string;
   season: string; 
   clothing_type: string;
   size: string;
-  color: string | undefined;
+  color: string;
   notes: string;
 }
 
