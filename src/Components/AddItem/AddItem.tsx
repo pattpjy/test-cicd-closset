@@ -1,20 +1,31 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react';
 import type { FormEvent, ChangeEvent } from 'react';
+import { useNavigate } from "react-router-dom";
 import './AddItem.css';
 import { createItem } from '../../apiCall';
 
-
 export const AddItem: React.FC = (): JSX.Element => {
 
+  const navigate = useNavigate();
   const [image, setImage] = useState<string>("");
   const [error, setError] = useState<string>("");
+  const [itemId, setItemId] = useState<number | undefined>();
   const [successfulPost, setSuccessfulPost] = useState<boolean>(false);
+
+useEffect(() => {
+    if (successfulPost) {
+      navigate(`/itemDetails/${itemId}`)
+    }
+    if (error) {
+      navigate('/item-not-found')
+    }
+  }, [successfulPost, error]);
 
   const handleSubmit = ({target}: FormEvent<HTMLFormElement> ) => {
     const formData = new FormData(target as HTMLFormElement)
     createItem(formData)
       .then(data => {
-        console.log(data)
+        setItemId(data.data.id)
         setSuccessfulPost(true);
         })
       .catch(err => setError(err))
@@ -30,8 +41,6 @@ export const AddItem: React.FC = (): JSX.Element => {
     <div className="form-container">
       <div className='text-container'> 
         <h2 className="form-title">Add New Item</h2>
-        {error && <p>Sorry, please try again.</p>}
-        {successfulPost && <p>Item Added!</p>}
       </div>
       <form className="form" id="form" onSubmit={(e => {e.preventDefault(); handleSubmit(e);})}>
         {image && <img src={image} alt="" className='image-preview'/>}
