@@ -8,7 +8,7 @@ interface attributes {
   season: string;
   clothing_type: string;
   size: string;
-  color: string;
+  color: string | undefined;
   image_url: string;
   notes: string;
 }
