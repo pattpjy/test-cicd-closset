@@ -24,7 +24,7 @@ export const AddList: React.FC = (): JSX.Element => {
     if (!response.ok) {
       throw new Error("Unable To Post Your Data. Try Later.");
     }
-    setIsPost("YOUR CUSTOM LIST IS CREATED");
+    setIsPost("YOUR CUSTOM LIST WAS CREATED!");
     return response.json();
   };
 
@@ -40,7 +40,7 @@ export const AddList: React.FC = (): JSX.Element => {
       await postCustomList(newCustomList);
     } catch (error) {
       console.error(error);
-      setHasError("UNABLE TO CREATE NEW CUSTOM LIST");
+      setHasError("UNABLE TO CREATE YOUR CUSTOM LIST.");
     }
 
     clearInput();
@@ -53,7 +53,7 @@ export const AddList: React.FC = (): JSX.Element => {
   };
 
   return (
-    <div className="form-container">
+    <div className="list-form-container">
       <h2 className="form-title">Create New List</h2>
       <form
         className="form--list"
@@ -65,11 +65,12 @@ export const AddList: React.FC = (): JSX.Element => {
         <label htmlFor="name" className="list--input">
           <input
             type="text"
-            placeholder="Add Custom List Name"
+            placeholder="Type List Name Here"
             name="name"
             value={newCustomList}
             onChange={(e) => handleInputChange(e)}
             required
+            className="input"
           />
         </label>
         <button type="submit" value="Submit" className="form-button">
