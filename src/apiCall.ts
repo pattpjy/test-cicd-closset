@@ -57,8 +57,7 @@ export const editItem = async ({data}: Data , id: number) => {
 };
 
 export const getSingleItem = async (id: string) => {
-   const url = `https://closet-manager-be.herokuapp.com/api/v1/users/1/items/${id}`;
-  // hard-coding this fetch for user 1 for now, make dynamic if we add other users
+  const url = `https://closet-manager-be.herokuapp.com/api/v1/users/1/items/${id}`;
   const response = await fetch(url);
   if (!response.ok) {
     throw new Error("Unable To Fetch Your Data. Try Later.");
