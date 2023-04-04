@@ -106,7 +106,7 @@ export const EditItem = (): JSX.Element => {
           <option value="other">Other</option>
         </select>
         <select className="dropdown" id="itemColor" name="color">
-          <option value="unspecified" hidden>Color</option>
+          <option value="unspecified">Color</option>
           <option value="red">Red</option>
           <option value="orange">Orange</option>
           <option value="yellow">Yellow</option>
