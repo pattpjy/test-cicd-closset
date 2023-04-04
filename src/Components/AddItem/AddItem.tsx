@@ -1,11 +1,8 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import type { FormEvent, ChangeEvent } from 'react';
 import { useNavigate } from "react-router-dom";
 import './AddItem.css';
 import { createItem } from '../../apiCall';
-import type { FormEvent } from 'react';
-import type { ChangeEvent } from "react"
-import type { MutableRefObject } from 'react';
 
 
 export const AddItem: React.FC = (): JSX.Element => {
