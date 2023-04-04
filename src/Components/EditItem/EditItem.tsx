@@ -1,10 +1,8 @@
-import "./EditItem.css";
-import { useNavigate } from "react-router-dom";
+import type { FormEvent } from 'react';
 import { useEffect, useState} from "react";
-import { useParams } from "react-router-dom";
-import { getSingleItem } from "../../apiCall";
-import { editItem } from '../../apiCall';
-import type { FormEvent } from 'react'
+import { useNavigate, useParams } from "react-router-dom";
+import "./EditItem.css";
+import { getSingleItem, editItem } from "../../apiCall";
 
 interface attributes {
   [key: string]: string;
