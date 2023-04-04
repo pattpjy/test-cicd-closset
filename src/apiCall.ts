@@ -1,11 +1,7 @@
 export const getAllItems = async () => {
   const url = "https://closet-manager-be.herokuapp.com/api/v1/users/1/items";
   // hard-coding this fetch for user 1 for now, make dynamic if we add other users
-  const response = await fetch(url, {
-    headers: {
-    "Content-Type": "text/html"
-  },
-  });
+  const response = await fetch(url);
   if (!response.ok) {
     throw new Error("Unable To Fetch Your Data. Try Later.");
   }
