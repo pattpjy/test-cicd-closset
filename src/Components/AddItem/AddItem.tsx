@@ -56,7 +56,7 @@ export const AddItem: React.FC = (): JSX.Element => {
           <option value="other">Other</option>
         </select>
         <select className="dropdown" name="color">
-          <option value="unspecified" hidden>Color</option>
+          <option value="unspecified">Color</option>
           <option value="red">Red</option>
           <option value="orange">Orange</option>
           <option value="yellow">Yellow</option>
@@ -70,6 +70,7 @@ export const AddItem: React.FC = (): JSX.Element => {
         </select>
         <select className="dropdown" name="season">
           <option value="all_season" hidden>Season</option>
+          <option value="all_season">All Seasons</option>
           <option value="fall">Fall</option>
           <option value="winter">Winter</option>
           <option value="spring">Spring</option>
