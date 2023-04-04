@@ -79,3 +79,16 @@ export const deleteItem = async (id: string | number) => {
   }
   return res.json();
 }
+
+export const postCustomList = async (data: string) => {
+  const url = `https://closet-manager-be.herokuapp.com/api/v1/users/1/lists`;
+  const response = await fetch(url, {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({ name: data }),
+  })
+  if (!response.ok) {
+    throw new Error("Could not delete.")
+  }
+  return response.json()
+}

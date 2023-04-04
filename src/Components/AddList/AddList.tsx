@@ -1,6 +1,7 @@
 import React from "react";
 import { useState } from "react";
 import "./AddList.css";
+import { postCustomList } from "../../apiCall";
 
 interface Event {
   target: {
@@ -13,21 +14,6 @@ export const AddList: React.FC = (): JSX.Element => {
   const [hasError, setHasError] = useState<string | null>(null);
   const [isPost, setIsPost] = useState<string | null>(null);
 
-  //apiCall Function  these need to move to apiCall file
-  const postCustomList = async (data: string) => {
-    const url = `https://closet-manager-be.herokuapp.com/api/v1/users/1/lists`;
-    const response = await fetch(url, {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ name: data }),
-    });
-    if (!response.ok) {
-      throw new Error("Unable To Post Your Data. Try Later.");
-    }
-    setIsPost("YOUR CUSTOM LIST IS CREATED");
-    return response.json();
-  };
-
   const handleInputChange = (event: Event) => {
     setNewCustomList(event.target.value);
   };
@@ -35,12 +21,11 @@ export const AddList: React.FC = (): JSX.Element => {
   const handleSubmit = async () => {
     console.log(newCustomList);
     try {
-      // next line is for throw error to see if the error message work
-      // throw new Error("WHERE AM I??");
-      await postCustomList(newCustomList);
+      await postCustomList(newCustomList)
+      .then(() => setIsPost("New List Created"))
     } catch (error) {
       console.error(error);
-      setHasError("UNABLE TO CREATE NEW CUSTOM LIST");
+      setHasError("Error: Unable to Create New List");
     }
 
     clearInput();
