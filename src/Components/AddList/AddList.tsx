@@ -1,5 +1,6 @@
 import React from "react";
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import "./AddList.css";
 import { postCustomList } from "../../apiCall";
 
@@ -10,9 +11,20 @@ interface Event {
 }
 
 export const AddList: React.FC = (): JSX.Element => {
+  const navigate = useNavigate();
   const [newCustomList, setNewCustomList] = useState<string>("");
   const [hasError, setHasError] = useState<string | null>(null);
   const [isPost, setIsPost] = useState<string | null>(null);
+  const [listId, setListId] = useState<string | undefined>()
+
+  useEffect(() => {
+    if (isPost) {
+      navigate(`/lists/${listId}`)
+    }
+    if (hasError) {
+      navigate('/error')
+    }
+  }, [isPost, hasError]);
 
   const handleInputChange = (event: Event) => {
     setNewCustomList(event.target.value);
@@ -22,21 +34,22 @@ export const AddList: React.FC = (): JSX.Element => {
     console.log(newCustomList);
     try {
       await postCustomList(newCustomList)
+      .then((response) => setListId(response.data.id))
       .then(() => setIsPost("New List Created"))
     } catch (error) {
       console.error(error);
       setHasError("Error: Unable to Create New List");
     }
-
     clearInput();
   };
+  
   const clearInput = () => {
     setNewCustomList("");
     setTimeout(() => {
       setIsPost(null), setHasError(null);
     }, 3000);
   };
-
+  
   return (
     <div className="form-container">
       <h2 className="form-title">Create New List</h2>
@@ -60,8 +73,6 @@ export const AddList: React.FC = (): JSX.Element => {
         <button type="submit" value="Submit" className="form-button">
           Add My Custom List
         </button>
-        {hasError && <h2 className="alert-msg">{hasError}</h2>}
-        {isPost && <h2 className="alert-msg">{isPost}</h2>}
       </form>
     </div>
   );
