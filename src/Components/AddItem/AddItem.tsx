@@ -3,6 +3,10 @@ import type { FormEvent, ChangeEvent } from 'react';
 import { useNavigate } from "react-router-dom";
 import './AddItem.css';
 import { createItem } from '../../apiCall';
+import type { FormEvent } from 'react';
+import type { ChangeEvent } from "react"
+import type { MutableRefObject } from 'react';
+
 
 export const AddItem: React.FC = (): JSX.Element => {
 
@@ -11,6 +15,7 @@ export const AddItem: React.FC = (): JSX.Element => {
   const [error, setError] = useState<string>("");
   const [itemId, setItemId] = useState<number | undefined>();
   const [successfulPost, setSuccessfulPost] = useState<boolean>(false);
+  const imageInputRef = useRef<HTMLInputElement>(null)
 
 useEffect(() => {
     if (successfulPost) {
@@ -26,7 +31,12 @@ useEffect(() => {
     createItem(formData)
       .then(data => {
         setItemId(data.data.id)
-        setSuccessfulPost(true);
+        console.log(data)
+        setSuccessfulPost(true)
+        setImage("")
+        if (imageInputRef.current) {
+          imageInputRef.current.value = ""
+        }
         })
       .catch(err => setError(err))
   }
@@ -53,6 +63,7 @@ useEffect(() => {
             name="image"
             required
             onChange={handleChange}
+            ref={imageInputRef}
           />
         </label>
         <select  className="dropdown" name="clothing_type" required>
@@ -94,6 +105,7 @@ useEffect(() => {
           <input className="notes-box" 
             type="text" name="notes" />
         </label>
+        <input type="reset" value="Clear" className="form-button"></input>
         <button type="submit" value="Submit" className="form-button">Add Item!</button>
       </form>
     </div>
