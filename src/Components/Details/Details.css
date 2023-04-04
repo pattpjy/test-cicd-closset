@@ -60,12 +60,8 @@
   margin: 4px;
   padding: 10px;
   text-decoration: none;
-<<<<<<< HEAD
   transition: all 0.2s ease-in-out;
   width: fit-content;
-=======
-  font-size: 15px;
->>>>>>> ee55ce458fee9d3814224d739bdd414aafe1c10a
 }
 
 .details-image {
