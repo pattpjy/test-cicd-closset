@@ -1,8 +1,8 @@
 import React, { useState } from 'react'
+import type { FormEvent, ChangeEvent } from 'react';
 import './AddItem.css';
 import { createItem } from '../../apiCall';
-import type { FormEvent } from 'react';
-import type { ChangeEvent } from "react"
+
 
 export const AddItem: React.FC = (): JSX.Element => {
 
