@@ -28,4 +28,5 @@
 .button-container {
   height: 80vh;
   overflow-y: scroll;
+  margin-bottom: 20%;
 }
